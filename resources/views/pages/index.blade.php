@@ -43,7 +43,7 @@
 <!-- datepicker -->
 <script src="{!! asset ('assets/plugins/datepicker/bootstrap-datepicker.js') !!}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-<script src="{!! asset('assets/plugins/fullcalendar/fullcalendar.min.js') !!}"></script>
+<script src="{!! asset('assets/plugins/fullcalendar/fullcalendar.js') !!}"></script>
 <script>
     $(function () {
 
@@ -107,8 +107,8 @@
                 // assign it the date that was reported
                 copiedEventObject.start = date;
                 copiedEventObject.allDay = allDay;
-                copiedEventObject.backgroundColor = $(this).css("background-color");
-                copiedEventObject.borderColor = $(this).css("border-color");
+                copiedEventObject.backgroundColor = $(this).data("background_color");
+                copiedEventObject.borderColor = $(this).data("border_color");
 
                 // render the event on the calendar
                 // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
@@ -126,51 +126,3 @@
     });
 </script>
 @endsection
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <div class="box-body">
-                    <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                        <label>Color</label>
-                        <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
-                        <ul class="fc-color-picker" id="color-chooser">
-                            <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a></li>
-                            <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a></li>
-                            <li><a class="text-light-blue" href="#"><i class="fa fa-square"></i></a></li>
-                            <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a></li>
-                            <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a></li>
-                            <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a></li>
-                            <li><a class="text-green" href="#"><i class="fa fa-square"></i></a></li>
-                            <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a></li>
-                            <li><a class="text-red" href="#"><i class="fa fa-square"></i></a></li>
-                            <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a></li>
-                            <li><a class="text-fuchsia" href="#"><i class="fa fa-square"></i></a></li>
-                            <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a></li>
-                            <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a></li>
-                        </ul>
-                    </div>
-                    <!-- /btn-group -->
-                    <div class="box-body">
-                        <label>Event Title</label>
-                        <div></div>
-                        <form action="#" method="post">
-                                <input id="new-event" type="event" class="form-control" placeholder="event">
-                        <!-- /btn-group -->
-                    <!-- /input-group -->
-                </div>
-            </div>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="add-new-event" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->

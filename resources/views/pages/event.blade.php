@@ -66,7 +66,7 @@
                                            placeholder="Title">
                                 </div>
                                 <div class="form-group date">
-                                    <label for="exampleInputStart">START</label>
+                                    <label>START</label>
                                     <input type="text" name="start" class="form-control" id="datepicker"
                                            placeholder="Start">
                                 </div>
@@ -74,50 +74,6 @@
                                     <label for="exampleInputEnd">END</label>
                                     <input type="text" name="end" class="form-control" id="datepickers"
                                            placeholder="End">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputBackground">BACKGROUND</label>
-                                    <input type="hidden" name="background_color" class="form-control"
-                                           id="exampleInputBackground_color"
-                                           placeholder="Background">
-                                    <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                                        <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
-                                        <ul class="fc-color-picker" id="color-chooser">
-                                            <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-light-blue" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-green" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-red" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-fuchsia" href="#"><i
-                                                            class="fa fa-square"></i></a></li>
-                                            <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputBorder_color">BORDER COLOR</label>
-                                    <input type="hidden" name="border_color" class="form-control"
-                                           id="exampleInputBorder_color"
-                                           placeholder="Border_color">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputUrl">URL</label>
@@ -171,50 +127,6 @@
                                     <label for="exampleInputEnd">END</label>
                                     <input type="text" name="end" class="form-control" id="datepicker2"
                                            placeholder="End">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputBackground">BACKGROUND</label>
-                                    <input type="hidden" name="background_color" class="form-control"
-                                           id="exampleInputBackground_color"
-                                           placeholder="Background">
-                                    <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                                        <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
-                                        <ul class="fc-color-picker" id="color-chooser">
-                                            <li><a class="text-aqua" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-blue" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-light-blue" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-teal" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-yellow" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-orange" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-green" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-lime" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-red" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-purple" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-fuchsia" href="#"><i
-                                                            class="fa fa-square"></i></a></li>
-                                            <li><a class="text-muted" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                            <li><a class="text-navy" href="#"><i class="fa fa-square"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputBorder_color">BORDER COLOR</label>
-                                    <input type="hidden" name="border_color" class="form-control"
-                                           id="exampleInputBorder_color"
-                                           placeholder="Border_color">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputUrl">URL</label>
@@ -291,8 +203,8 @@
                     title = $form.find("input[name='title']").val(),
                     start = $form.find("input[name='start']").val(),
                     end = $form.find("input[name='end']").val(),
-                    background_color = $form.find("input[name='background_color']").val(),
-                    border_color = $form.find("input[name='border_color']").val(),
+        //            background_color = $form.find("input[name='background_color']").val(),
+        //            border_color = $form.find("input[name='border_color']").val(),
                     url = $form.find("input[name='url']").val(),
                     content = $form.find("textarea[name='content']").val(),
                     status = $form.find("input[name='status']").val(),
@@ -303,8 +215,8 @@
                 title: title,
                 start: start,
                 end: end,
-                background_color: background_color,
-                border_color: border_color,
+          //      background_color: background_color,
+            //    border_color: border_color,
                 url: url,
                 content: content,
                 status: status,
@@ -327,8 +239,8 @@
                     title = $form.find("input[name='title']").val(),
                     start = $form.find("input[name='start']").val(),
                     end = $form.find("input[name='end']").val(),
-                    background_color = $form.find("input[name='background_color']").val(),
-                    border_color = $form.find("input[name='border_color']").val(),
+              //      background_color = $form.find("input[name='background_color']").val(),
+            //  border_color = $form.find("input[name='border_color']").val(),
                     url = $form.find("input[name='url']").val(),
                     content = $form.find("textarea[name='content']").val(),
                     status = $form.find("input[name='status']").val(),
@@ -341,8 +253,8 @@
                             title: title,
                             start: start,
                             end: end,
-                            background_color: background_color,
-                            border_color: border_color,
+                //            background_color: background_color,
+               //             border_color: border_color,
                             url: url,
                             content: content,
                             status: status,
@@ -473,8 +385,8 @@
                         "<tr><td> Title </td><td> : </td><td>" + data.title + "</td></tr>" +
                         "<tr><td> Start </td><td> : </td><td>" + data.start + "</td></tr>" +
                         "<tr><td> End </td><td> : </td><td>" + data.end + "</td></tr>" +
-                        "<tr><td> Background_color </td><td> : </td><td>" + data.background_color + "</td></tr>" +
-                        "<tr><td> Border_color </td><td> : </td><td>" + data.border_color + "</td></tr>" +
+             //           "<tr><td> Background_color </td><td> : </td><td>" + data.background_color + "</td></tr>" +
+             //           "<tr><td> Border_color </td><td> : </td><td>" + data.border_color + "</td></tr>" +
                         "<tr><td> Url</td><td> : </td><td>" + data.url + "</td></tr>" +
                         "<tr><td> Content </td><td> : </td><td>" + data.content + "</td></tr>" +
                         "<tr><td>Status </td><td> : </td><td>" + data.status + "</td></tr>" +

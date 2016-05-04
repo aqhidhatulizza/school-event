@@ -19,8 +19,8 @@
             <div class="box">
                 <div id="list">
                     <div class="box-header">
-                        <button type="button" class="btn btn-primary" onclick="Create()"><i
-                                    class="fa fa-plus-circle"></i></button>
+                        <button type="button" class="btn btn-primary" onclick="Create()">
+                            <i class="fa fa-plus-circle"></i></button>
                         <div class="box-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control pull-right"

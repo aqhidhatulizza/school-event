@@ -81,6 +81,7 @@
 <script src="{!! asset ('assets/plugins/slimScroll/jquery.slimscroll.min.js') !!}"></script>
 <!-- FastClick -->
 <script src="{!! asset ('assets/plugins/fastclick/fastclick.js') !!}"></script>
+<script src="{!! asset ('assets/plugins/datepicker/bootstrap-datepicker.js') !!}"></script>
     <!-- AdminLTE App -->
 <script src="{!! asset ('assets/dist/js/app.min.js') !!}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

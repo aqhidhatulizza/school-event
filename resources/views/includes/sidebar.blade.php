@@ -28,25 +28,21 @@
             <li>
                 <a href="{!! route('page.calendar') !!}">
                     <i class="fa fa-calendar"></i> <span>Calender</span>
-                    <small class="label pull-right bg-red">3</small>
                 </a>
             </li>
             <li>
                 <a href="{!! route('page.users') !!}">
-                    <i class="fa fa-envelope"></i> <span>User</span>
-                    <small class="label pull-right bg-yellow">12</small>
+                    <i class="fa fa-user"></i> <span>User</span>
                 </a>
             </li>
             <li>
                 <a href="{!! route('page.klien') !!}">
-                    <i class="fa fa-envelope"></i> <span>Klien</span>
-                    <small class="label pull-right bg-yellow">12</small>
+                    <i class="fa fa-thumbs-o-up"></i> <span>Klien</span>
                 </a>
             </li>
             <li>
                 <a href="{!! route('page.event') !!}">
-                        <i class="fa fa-envelope"></i> <span>Event</span>
-                    <small class="label pull-right bg-yellow">12</small>
+                        <i class="fa fa-sticky-note-o "></i> <span>Event</span>
                 </a>
             </li>
         </ul>
