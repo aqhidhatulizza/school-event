@@ -14,6 +14,24 @@
 
 <!-- Main content -->
 <section class="content">
+
+    <div class="box box-default color-palette-box">
+        <div class="box-header with-border">
+            <h3 class="box-title"><i class="fa fa-tag"></i> Color Palette</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="reminder"></div>
+
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -82,26 +100,38 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputContent">CONTENT</label>
-                                    <textarea name="content" class="form-control"
-                                              placeholder="Content"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputIs_status">STATUS</label>
-                                    <input type="text" name="status" class="form-control"
-                                           placeholder="Status">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputIs_remember">REMEMBER</label>
-                                    <input type="text" name="is_remember" class="form-control"
-                                           id="exampleInputIs_remember"
-                                           placeholder="Is_remember">
-                                </div>
-                                <!-- /.box-body -->
+                                    <select md-select-label class="form-control" ng-model="input.content" required>
+                                        <option value="" disabled selected>Pilih Content</option>
+                                        <option value="1">Guru</option>
+                                        <option value="2">Wali Murid</option>
+                                        <option value="2">Siswa</option>
+                                    </select>
 
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                    <button class="btn btn-default" onclick="Index()">Kembali</button>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputIs_status">STATUS</label>
+                                <select md-select-label class="form-control" ng-model="input.status" required>
+                                    <option value="" disabled selected>Pilih Status</option>
+                                    <option value="1">Biasa</option>
+                                    <option value="2">Penting</option>
+                                    <option value="3">Segera</option>
+                                    <option value="4">Sangat Segera</option>
+                                    <option value="5">Rahasia</option>
+                                    <option value="6">Sangat Rahasia</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputIs_remember">REMEMBER</label>
+                                <input type="text" name="is_remember" class="form-control"
+                                       id="exampleInputIs_remember"
+                                       placeholder="Is_remember">
+                            </div>
+                            <!-- /.box-body -->
+
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button class="btn btn-default" onclick="Index()">Kembali</button>
                             </div>
                         </form>
                     </div>
@@ -193,18 +223,20 @@
 </div>
 
 <script src="{!! asset ('assets/plugins/jQuery/jQuery-2.2.0.min.js') !!}"></script>
+<script src="{!! asset ('assets/plugins/moment/moment.min.js') !!}"></script>
 <script>
     $(document).ready(function () {
         var currentRequest = null;
         Index();
+        cekevent();
         $("#Form-Create").submit(function (event) {
             event.preventDefault();
             var $form = $(this),
                     title = $form.find("input[name='title']").val(),
                     start = $form.find("input[name='start']").val(),
                     end = $form.find("input[name='end']").val(),
-        //            background_color = $form.find("input[name='background_color']").val(),
-        //            border_color = $form.find("input[name='border_color']").val(),
+            //            background_color = $form.find("input[name='background_color']").val(),
+            //            border_color = $form.find("input[name='border_color']").val(),
                     url = $form.find("input[name='url']").val(),
                     content = $form.find("textarea[name='content']").val(),
                     status = $form.find("input[name='status']").val(),
@@ -215,8 +247,8 @@
                 title: title,
                 start: start,
                 end: end,
-          //      background_color: background_color,
-            //    border_color: border_color,
+                //      background_color: background_color,
+                //    border_color: border_color,
                 url: url,
                 content: content,
                 status: status,
@@ -239,7 +271,7 @@
                     title = $form.find("input[name='title']").val(),
                     start = $form.find("input[name='start']").val(),
                     end = $form.find("input[name='end']").val(),
-              //      background_color = $form.find("input[name='background_color']").val(),
+            //      background_color = $form.find("input[name='background_color']").val(),
             //  border_color = $form.find("input[name='border_color']").val(),
                     url = $form.find("input[name='url']").val(),
                     content = $form.find("textarea[name='content']").val(),
@@ -253,8 +285,8 @@
                             title: title,
                             start: start,
                             end: end,
-                //            background_color: background_color,
-               //             border_color: border_color,
+                            //            background_color: background_color,
+                            //             border_color: border_color,
                             url: url,
                             content: content,
                             status: status,
@@ -385,8 +417,8 @@
                         "<tr><td> Title </td><td> : </td><td>" + data.title + "</td></tr>" +
                         "<tr><td> Start </td><td> : </td><td>" + data.start + "</td></tr>" +
                         "<tr><td> End </td><td> : </td><td>" + data.end + "</td></tr>" +
-             //           "<tr><td> Background_color </td><td> : </td><td>" + data.background_color + "</td></tr>" +
-             //           "<tr><td> Border_color </td><td> : </td><td>" + data.border_color + "</td></tr>" +
+                            //           "<tr><td> Background_color </td><td> : </td><td>" + data.background_color + "</td></tr>" +
+                            //           "<tr><td> Border_color </td><td> : </td><td>" + data.border_color + "</td></tr>" +
                         "<tr><td> Url</td><td> : </td><td>" + data.url + "</td></tr>" +
                         "<tr><td> Content </td><td> : </td><td>" + data.content + "</td></tr>" +
                         "<tr><td>Status </td><td> : </td><td>" + data.status + "</td></tr>" +
@@ -425,7 +457,36 @@
         $("input[name='background_color']").val(currColor);
         $("input[name='border_color']").val(currColor);
     });
+    function cekevent() {
 
+        $.getJSON("/api/v1/event", function (data) {
+            var jumlah = data.data.length;
+            $.each(data.data.slice(0, jumlah), function (i, data) {
+                var today = moment().format("YYYY-MM-DD");
+                var tgl_3 = moment(data.start).subtract(3, 'days').format("YYYY-MM-DD");
+                var tgl_2 = moment(data.start).subtract(2, 'days').format("YYYY-MM-DD");
+                var tgl_1 = moment(data.start).subtract(1, 'days').format("YYYY-MM-DD");
+
+                console.log(tgl_3);
+                console.log(tgl_2);
+                console.log(tgl_1);
+                if (today == tgl_3) {
+                    $('#reminder').append("<div class='alert alert-info alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-check'></i> "+data.title+"</h4>Kurang 3 hari lagi.</div>");
+                }
+                if (today == tgl_2) {
+                    $('#reminder').append("<div class='alert alert-warning alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-check'></i> "+data.title+"</h4>Kurang 2 hari lagi.</div>");
+                }
+                if (today == tgl_1) {
+                    $('#reminder').append("<div class='alert alert-danger alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-check'></i> "+data.title+"</h4>Kurang 1 hari lagi.</div>");
+                }
+
+
+            })
+        });
+        setTimeout(function () {
+        $('reminder').children().remove();
+        },1000);
+    }
 </script>
 @endsection
 

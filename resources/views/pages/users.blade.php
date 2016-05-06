@@ -146,10 +146,12 @@
     </div>
 </div>
 <script src="{!! asset ('assets/plugins/jQuery/jQuery-2.2.0.min.js') !!}"></script>
+<script src="{!! asset ('assets/plugins/moment/moment.min.js') !!}"></script>
 <script>
     $(document).ready(function () {
         var currentRequest = null;
         Index();
+        cekevent();
         $("#Form-Create").submit(function (users) {
             users.preventDefault();
             var $form = $(this),
@@ -303,6 +305,20 @@
         }
     }
 
+    function cekevent(){
+
+        $.getJSON("/api/v1/event", function (data) {
+            var jumlah = data.data.length;
+            $.each(data.data.slice(0, jumlah), function (i, data) {
+                var today = Date.now();
+                var tgl = today.getFullYear()+"-"+today.getMonth()+"-"+today.getDate();
+                console.log(tgl);
+                console.log(data.start);
+                console.log(data.end);
+
+            })
+        });
+    }
 </script>
 @endsection
 

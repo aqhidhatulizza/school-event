@@ -20,7 +20,7 @@
                 <div id="list">
                     <div class="box-header">
                         <button type="button" class="btn btn-primary" onclick="Create()">
-                            <i class="fa fa-plus-circle"></i></button>
+                            <i  class="fa fa-plus-circle"></i></button>
                         <div class="box-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control pull-right"
@@ -157,10 +157,12 @@
     </div>
 </div>
 <script src="{!! asset ('assets/plugins/jQuery/jQuery-2.2.0.min.js') !!}"></script>
+<script src="{!! asset ('assets/plugins/moment/moment.min.js') !!}"></script>
 <script>
     $(document).ready(function () {
         var currentRequest = null;
         Index();
+        cekevent();
         $("#Form-Create").submit(function (klien) {
             klien.preventDefault();
             var $form = $(this),
@@ -325,5 +327,19 @@
 
     }
 
+    function cekevent(){
+
+        $.getJSON("/api/v1/event", function (data) {
+            var jumlah = data.data.length;
+            $.each(data.data.slice(0, jumlah), function (i, data) {
+                var today = Date.now();
+                var tgl = today.getFullYear()+"-"+today.getMonth()+"-"+today.getDate();
+                console.log(tgl);
+                console.log(data.start);
+                console.log(data.end);
+
+            })
+        });
+    }
 </script>
 @endsection

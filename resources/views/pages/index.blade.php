@@ -42,7 +42,7 @@
 <script src="{!! asset ('assets/plugins/daterangepicker/daterangepicker.js') !!}"></script>
 <!-- datepicker -->
 <script src="{!! asset ('assets/plugins/datepicker/bootstrap-datepicker.js') !!}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+<script src="{!! asset ('assets/plugins/moment/moment.min.js') !!}"></script>
 <script src="{!! asset('assets/plugins/fullcalendar/fullcalendar.js') !!}"></script>
 <script>
     $(function () {
@@ -84,13 +84,11 @@
             header: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'month,agendaWeek,agendaDay'
+                right: 'month',
             },
             buttonText: {
                 today: 'today',
                 month: 'month',
-                week: 'week',
-                day: 'day'
             },
             //Random default events
             events: '{!! route('api.v1.list.event') !!}',
@@ -124,5 +122,20 @@
         });
 
     });
+
+    function cekevent(){
+
+        $.getJSON("/api/v1/event", function (data) {
+            var jumlah = data.data.length;
+            $.each(data.data.slice(0, jumlah), function (i, data) {
+                var today = Date.now();
+                var tgl = today.getFullYear()+"-"+today.getMonth()+"-"+today.getDate();
+                console.log(tgl);
+                console.log(data.start);
+                console.log(data.end);
+
+            })
+        });
+    }
 </script>
 @endsection
