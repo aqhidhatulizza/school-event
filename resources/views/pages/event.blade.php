@@ -17,7 +17,7 @@
 
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-tag"></i> Color Palette</h3>
+            <h3 class="box-title"><i class="fa fa-tag"></i> Reminder</h3>
         </div>
         <div class="box-body">
             <div class="row">
@@ -100,7 +100,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputContent">CONTENT</label>
-                                    <select md-select-label class="form-control" ng-model="input.content" required>
+                                    <select md-select-label name="content" class="form-control" ng-model="input.content"
+                                            required>
                                         <option value="" disabled selected>Pilih Content</option>
                                         <option value="1">Guru</option>
                                         <option value="2">Wali Murid</option>
@@ -111,7 +112,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputIs_status">STATUS</label>
-                                <select md-select-label class="form-control" ng-model="input.status" required>
+                                <select md-select-label name="status" class="form-control" ng-model="input.status"
+                                        required>
                                     <option value="" disabled selected>Pilih Status</option>
                                     <option value="1">Biasa</option>
                                     <option value="2">Penting</option>
@@ -170,8 +172,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputIs_status">STATUS</label>
-                                    <input type="text" name="status" class="form-control"
-                                           placeholder="Status">
+                                    <select md-select-label name="status" class="form-control" ng-model="input.status"
+                                            required>
+                                        <option value="" disabled selected>Pilih Status</option>
+                                        <option value="1">Biasa</option>
+                                        <option value="2">Penting</option>
+                                        <option value="3">Segera</option>
+                                        <option value="4">Sangat Segera</option>
+                                        <option value="5">Rahasia</option>
+                                        <option value="6">Sangat Rahasia</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputIs_remember">REMEMBER</label>
@@ -238,8 +248,8 @@
             //            background_color = $form.find("input[name='background_color']").val(),
             //            border_color = $form.find("input[name='border_color']").val(),
                     url = $form.find("input[name='url']").val(),
-                    content = $form.find("textarea[name='content']").val(),
-                    status = $form.find("input[name='status']").val(),
+                    content = $form.find("select[name='content']").val(),
+                    status = $form.find("select[name='status']").val(),
                     sifat = $form.find("input[name='sifat']").val(),
                     is_remember = $form.find("input[name='is_remember']").val();
 //                $("#Form-Create").reset();
@@ -247,10 +257,8 @@
                 title: title,
                 start: start,
                 end: end,
-                //      background_color: background_color,
-                //    border_color: border_color,
-                url: url,
                 content: content,
+                url: url,
                 status: status,
                 sifat: sifat,
                 is_remember: is_remember,
@@ -458,7 +466,7 @@
         $("input[name='border_color']").val(currColor);
     });
     function cekevent() {
-
+        var h ;
         $.getJSON("/api/v1/event", function (data) {
             var jumlah = data.data.length;
             $.each(data.data.slice(0, jumlah), function (i, data) {
@@ -467,25 +475,32 @@
                 var tgl_2 = moment(data.start).subtract(2, 'days').format("YYYY-MM-DD");
                 var tgl_1 = moment(data.start).subtract(1, 'days').format("YYYY-MM-DD");
 
-                console.log(tgl_3);
-                console.log(tgl_2);
-                console.log(tgl_1);
-                if (today == tgl_3) {
-                    $('#reminder').append("<div class='alert alert-info alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-check'></i> "+data.title+"</h4>Kurang 3 hari lagi.</div>");
-                }
-                if (today == tgl_2) {
-                    $('#reminder').append("<div class='alert alert-warning alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-check'></i> "+data.title+"</h4>Kurang 2 hari lagi.</div>");
-                }
-                if (today == tgl_1) {
-                    $('#reminder').append("<div class='alert alert-danger alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-check'></i> "+data.title+"</h4>Kurang 1 hari lagi.</div>");
-                }
+                if (moment().format("h") == 3 || moment().format("h") == 6 || moment().format("h") == 9 || moment().format("h") == 12) {
+                    if (today == tgl_3) {
+                        $('#reminder').append("<div class='alert alert-info alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-check'></i> " + data.title + "</h4>Kurang 3 hari lagi.</div>");
+                    }
+                    if (today == tgl_2) {
+                        $('#reminder').append("<div class='alert alert-warning alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-check'></i> " + data.title + "</h4>Kurang 2 hari lagi.</div>");
+                    }
+                    if (today == tgl_1) {
+                        $('#reminder').append("<div class='alert alert-danger alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-check'></i> " + data.title + "</h4>Kurang 1 hari lagi.</div>");
+                    }
 
+                    h =true;
+                }
 
             })
+            if (h){
+                var audioElement = document.createElement('audio');
+                audioElement.setAttribute('src','assets/1.mp3');
+                audioElement.setAttribute('autoplay','autoplay');
+                audioElement.Play();
+                audioElement.play();
+            }
         });
         setTimeout(function () {
-        $('reminder').children().remove();
-        },1000);
+            $('reminder').children().remove();
+        }, 1000);
     }
 </script>
 @endsection

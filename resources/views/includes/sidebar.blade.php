@@ -42,7 +42,7 @@
             </li>
             <li>
                 <a href="{!! route('page.event') !!}">
-                        <i class="fa fa-sticky-note-o "></i> <span>Event</span>
+                    <i class="fa fa-sticky-note-o "></i> <span>Event</span>
                 </a>
             </li>
         </ul>

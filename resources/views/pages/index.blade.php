@@ -3,7 +3,7 @@
         <!-- fullCalendar 2.2.5-->
 <link rel="stylesheet" href="{!! asset('assets/plugins/fullcalendar/fullcalendar.min.css') !!}">
 <link rel="stylesheet" href="{!! asset('assets/plugins/fullcalendar/fullcalendar.print.css') !!}" media="print">
-        @endsection
+@endsection
 @section('content')
         <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -19,6 +19,22 @@
 
 <!-- Main content -->
 <section class="content">
+    <div class="box box-default color-palette-box">
+        <div class="box-header with-border">
+            <h3 class="box-title"><i class="fa fa-tag"></i> Reminder</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="reminder"></div>
+
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+    </div>
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
@@ -46,7 +62,7 @@
 <script src="{!! asset('assets/plugins/fullcalendar/fullcalendar.js') !!}"></script>
 <script>
     $(function () {
-
+        cekevent();
         /* initialize the external events
          -----------------------------------------------------------------*/
         function ini_events(ele) {
@@ -123,19 +139,42 @@
 
     });
 
-    function cekevent(){
-
+    function cekevent() {
+        var h ;
         $.getJSON("/api/v1/event", function (data) {
             var jumlah = data.data.length;
             $.each(data.data.slice(0, jumlah), function (i, data) {
-                var today = Date.now();
-                var tgl = today.getFullYear()+"-"+today.getMonth()+"-"+today.getDate();
-                console.log(tgl);
-                console.log(data.start);
-                console.log(data.end);
+                var today = moment().format("YYYY-MM-DD");
+                var tgl_3 = moment(data.start).subtract(3, 'days').format("YYYY-MM-DD");
+                var tgl_2 = moment(data.start).subtract(2, 'days').format("YYYY-MM-DD");
+                var tgl_1 = moment(data.start).subtract(1, 'days').format("YYYY-MM-DD");
+
+                if (moment().format("h") == 3 || moment().format("h") == 6 || moment().format("h") == 9 || moment().format("h") == 12) {
+                    if (today == tgl_3) {
+                        $('#reminder').append("<div class='alert alert-info alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-check'></i> " + data.title + "</h4>Kurang 3 hari lagi.</div>");
+                    }
+                    if (today == tgl_2) {
+                        $('#reminder').append("<div class='alert alert-warning alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-check'></i> " + data.title + "</h4>Kurang 2 hari lagi.</div>");
+                    }
+                    if (today == tgl_1) {
+                        $('#reminder').append("<div class='alert alert-danger alert-dismissible'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><h4><i class='icon fa fa-check'></i> " + data.title + "</h4>Kurang 1 hari lagi.</div>");
+                    }
+
+                    h =true;
+                }
 
             })
+            if (h){
+                var audioElement = document.createElement('audio');
+                audioElement.setAttribute('src','assets/1.mp3');
+                audioElement.setAttribute('autoplay','autoplay');
+                audioElement.Play();
+                audioElement.play();
+            }
         });
+        setTimeout(function () {
+            $('reminder').children().remove();
+        }, 1000);
     }
 </script>
 @endsection
